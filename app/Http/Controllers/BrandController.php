@@ -2,15 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Brand;
+use App\Models\Brands;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class BrandController extends Controller
 {
     public function index()
     {
 
-        $brands = Brand::all();
+        $brands = Brands::all();
 
 
         return view('brand.index', compact('brands'));
@@ -25,8 +26,15 @@ class BrandController extends Controller
 
     public function store(Request $request)
     {
- 
-        $brand = Brand::create([
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string|min:3',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator->errors())->withInput();
+        }
+
+        $brand = Brands::create([
             'name' => $request->name,
         ]);
 
@@ -38,7 +46,7 @@ class BrandController extends Controller
     public function edit(Request $request, $id)
     {
 
-        $brand = Brand::find($id);
+        $brand = Brands::find($id);
 
 
         return view('brand.edit', compact('brand'));
@@ -47,8 +55,15 @@ class BrandController extends Controller
 
     public function update(Request $request, $id)
     {
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string|min:3',
+        ]);
 
-        Brand::where('id', $id)->update([
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator->errors())->withInput();
+        }
+
+        Brands::where('id', $id)->update([
             'name' => $request->name,
         ]);
 
@@ -60,7 +75,7 @@ class BrandController extends Controller
     public function destroy($id)
     {
 
-        $brand = Brand::find($id);
+        $brand = Brands::find($id);
 
 
         $brand->delete();

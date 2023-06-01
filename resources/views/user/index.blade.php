@@ -31,7 +31,9 @@
                                     <td>{{ $user->name }}</td>
                                     <td>{{ $user->email }}</td>
                                     <td>{{ $user->phone }}</td>
-                                    <td>{{ $user->role_id}}</td>
+                                    <td>
+                                        <span class="badge  {{ $user->role->name == 'admin' ? 'bg-success' : 'bg-primary' }}">{{ $user->role->name }}</span>
+                                    </td>
                                     <td>
                                         <form action="{{ route('user.destroy', $user->id) }}" method="POST" class="d-inline">
                                             <a href="{{ route('user.edit', $user->id) }}" class="btn btn-warning">Edit</a>

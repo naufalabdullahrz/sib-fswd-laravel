@@ -51,7 +51,8 @@ class UserController extends Controller
         $user->update([
             'name' => $request->name,
             'email' => $request->email,
-            'phone' => $request->phone
+            'phone' => $request->phone,
+            'role_id' => $request->role
         ]);
         
         return redirect()->route('user.index');
