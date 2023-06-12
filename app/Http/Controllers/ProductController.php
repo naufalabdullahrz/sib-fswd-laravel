@@ -47,10 +47,8 @@ class ProductController extends Controller
             return redirect()->back()->withErrors($validator->errors())->withInput();
         }
 
-        // ubah nama file
         $imageName = time() . '.' . $request->image->extension();
 
-        // simpan file ke folder public/product
         Storage::putFileAs('public/product', $request->file('image'), $imageName);
 
         $product = Product::create([
@@ -68,14 +66,11 @@ class ProductController extends Controller
     public function edit($id)
     {
         
-        // ambil data product berdasarkan id
         $product = Product::where('id', $id)->with('category')->first();
 
-        // ambil data brand dan category sebagai isian di pilihan (select)
         $brands = Brands::all();
         $categories = Category::all();
 
-        // tampilkan view edit dan passing data product
         return view('product.edit', compact('product', 'brands', 'categories'));
     }
 
@@ -93,21 +88,15 @@ class ProductController extends Controller
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator->errors())->withInput();
         }
-        // cek jika user mengupload gambar di form
         if ($request->hasFile('image')) {
-            // ambil nama file gambar lama dari database
             $old_image = Product::find($id)->image;
 
-            // hapus file gambar lama dari folder slider
             Storage::delete('public/product/'.$old_image);
 
-            // ubah nama file
             $imageName = time() . '.' . $request->image->extension();
 
-            // simpan file ke folder public/product
             Storage::putFileAs('public/product', $request->file('image'), $imageName);
 
-            // update data product
             Product::where('id', $id)->update([
                 'category_id' => $request->category,
                 'name' => $request->name,
@@ -118,7 +107,6 @@ class ProductController extends Controller
             ]);
 
         } else {
-            // update data product tanpa menyertakan file gambar
             Product::where('id', $id)->update([
                 'category_id' => $request->category,
                 'name' => $request->name,
@@ -128,22 +116,17 @@ class ProductController extends Controller
             ]);
         }
 
-        // redirect ke halaman product.index
         return redirect()->route('product.index');
     }
 
     public function destroy($id)
     {
-        // ambil data product berdasarkan id
         $product = Product::find($id);
 
-        // hapus file gambar dari folder product
         Storage::delete('public/product/'.$product->image);
 
-        // hapus data product
         $product->delete();
 
-        // redirect ke halaman product.index
         return redirect()->route('product.index');
     }
 }
