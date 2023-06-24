@@ -50,23 +50,23 @@ Route::middleware('auth')->group(function() {
     // ADMIN
     Route::middleware('role:Admin')->group(function() {
         // Slider
-        Route::get('/slider', [SliderController::class, 'index'])->name('slider.index'); // route untuk menampilkan data awal
-        Route::get('/slider/create', [SliderController::class, 'create'])->name('slider.create'); // route untuk menampilkan form create
-        Route::post('/slider', [SliderController::class, 'store'])->name('slider.store'); // route untuk menyimpan data
-        Route::get('/slider/edit/{id}', [SliderController::class, 'edit'])->name('slider.edit'); // route untuk menampilkan form edit
-        Route::put('/slider/{id}', [SliderController::class, 'update'])->name('slider.update'); // route untuk mengupdate data
-        Route::delete('/slider/{id}', [SliderController::class, 'destroy'])->name('slider.destroy'); // route untuk menghapus data
+        Route::get('/slider', [SliderController::class, 'index'])->name('slider.index'); 
+        Route::get('/slider/create', [SliderController::class, 'create'])->name('slider.create'); 
+        Route::post('/slider', [SliderController::class, 'store'])->name('slider.store');
+        Route::get('/slider/edit/{id}', [SliderController::class, 'edit'])->name('slider.edit');
+        Route::put('/slider/{id}', [SliderController::class, 'update'])->name('slider.update'); 
+        Route::delete('/slider/{id}', [SliderController::class, 'destroy'])->name('slider.destroy'); 
     });
 
     // STAFF & ADMIN
     Route::middleware('role:Admin|Staff')->group(function() {
         // Brand
-        Route::get('/brand', [BrandController::class, 'index'])->name('brand.index'); // route untuk menampilkan data awal
-        Route::get('/brand/create', [BrandController::class, 'create'])->name('brand.create'); // route untuk menampilkan form create
-        Route::get('/brand/edit/{id}', [BrandController::class, 'edit'])->name('brand.edit'); // route untuk menampilkan form edit
-        Route::post('/brand', [BrandController::class, 'store'])->name('brand.store'); // route untuk menyimpan data
-        Route::put('/brand/{id}', [BrandController::class, 'update'])->name('brand.update'); // route untuk mengupdate data
-        Route::delete('/brand/{id}', [BrandController::class, 'destroy'])->name('brand.destroy'); // route untuk menghapus data
+        Route::get('/brand', [BrandController::class, 'index'])->name('brand.index'); 
+        Route::get('/brand/create', [BrandController::class, 'create'])->name('brand.create'); 
+        Route::get('/brand/edit/{id}', [BrandController::class, 'edit'])->name('brand.edit'); 
+        Route::post('/brand', [BrandController::class, 'store'])->name('brand.store'); 
+        Route::put('/brand/{id}', [BrandController::class, 'update'])->name('brand.update'); 
+        Route::delete('/brand/{id}', [BrandController::class, 'destroy'])->name('brand.destroy'); 
     });
 
 

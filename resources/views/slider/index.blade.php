@@ -14,7 +14,6 @@
                             <tr>
                                 <th>#</th>
                                 <th>Title</th>
-                                <th>Caption</th>
                                 <th>Image</th>
                                 <th>Aksi</th>
                             </tr>
@@ -24,7 +23,6 @@
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $slider->title }}</td>
-                                    <td>{{ $slider->caption }}</td>
                                     <td>
                                         <img src="{{ asset('storage/slider/' . $slider->image) }}" class="img-fluid" style="max-width: 100px;"
                                             alt="{{ $slider->image }}">

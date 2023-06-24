@@ -19,7 +19,7 @@
     <!-- Navigation-->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container px-4 px-lg-5">
-            <a class="navbar-brand" href="#!">LaraShop</a>
+            <a class="navbar-brand" href="#!">Tynicant</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -64,7 +64,6 @@
                 <div class="carousel-item {{ $loop->first ? 'active' : '' }}" data-bs-interval="3000">
                     <img src="{{ asset('storage/slider/' . $slider->image) }}" class="d-block w-100" alt="{{ $slider->image }}">
                     <div class="carousel-caption d-none d-md-block">
-                        <h5>{{ $slider->title }}</h5>
                         <p>{{ $slider->caption }}</p>
                     </div>
                 </div>
